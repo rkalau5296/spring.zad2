@@ -31,11 +31,7 @@ public class Basket {
                 .map(Product::getPrice)
                 .reduce(0.00, Double::sum);
 
-        if(vatValue == 0 || discountValue ==0)
-        {
-            return result;
-        }
-        return Math.round(result * vatValue * discountValue * 100.00)/100.00;
+        return Math.round(((result + (result * vatValue) - (result * discountValue))) * 100.00)/100.00;
     }
 
     public double generateRandomPrice(double min, double max) {
